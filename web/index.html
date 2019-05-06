@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<meta charset="utf8">
+<html>
+    <head>
+        <title>CGA</title>
+        <link rel="stylesheet" href="cga.css">
+    </head>
+    <body>
+        <datalist id="region-list">
+            <option value="Japan">Japan</option>
+            <option value="Europe">Europe</option>
+            <option value="USA">USA</option>
+        </datalist>
+        <datalist id="color-encoding-list">
+            <option value="PAL">PAL</option>
+            <option value="NTSC">NTSC</option>
+        </datalist>
+        <datalist id="recording-source-list">
+            <option value="RF">RF</option>
+            <option value="Composite">Composite</option>
+            <option value="RGBScart">RGB Scart</option>
+            <option value="Component">Component</option>
+            <option value="HDMI">HDMI</option>
+        </datalist>
+        <datalist id="system-machine-list">
+            <option value="NES">NES</option>
+            <option value="NES">Famicom</option>
+            <option value="SNES">SNES</option>
+            <option value="SNES">SFC</option>
+            <option value="C64">C64</option>
+            <option value="C64">Commodore 64</option>
+            <option value="A500">A500</option>
+            <option value="A500">Amiga 500</option>
+        </datalist>
+
+        <div class="left">
+            <table class="fill-width">
+                <th colspan="2">Game information</th>
+                <tr><td class="td-title">Title:</td><td class="td-value"><input  class="fill-width" type="text" id="game-title"></td></tr>
+                <tr><td class="td-title">Developer:</td><td class="td-value"><input  class="fill-width" type="text" id="game-developer"></td></tr>
+                <tr><td class="td-title">Publisher:</td><td class="td-value"><input  class="fill-width" type="text" id="game-publisher"></td></tr>
+                <tr><td class="td-title">Year:</td><td class="td-value"><input  class="fill-width" type="text" id="game-year"></td></tr>
+                <tr><td class="td-title">Region:</td><td class="td-value"><input  class="fill-width" list="region-list" id="game-region"></td></tr>
+                <tr><td class="td-title">Notes:</td><td class="td-value"><input  class="fill-width" type="text" id="game-notes"></td></tr>
+            </table>
+            <table class="fill-width">
+                <th colspan="2">System information</th>
+                <tr><td class="td-title">Machine:</td><td class="td-value"><input  class="fill-width" list="system-machine-list" id="system-machine"></td></tr>
+                <tr><td class="td-title">Model:</td><td class="td-value"><input  class="fill-width" type="text" id="system-model"></td></tr>
+                <tr><td class="td-title">Color encoding:</td><td class="td-value"><input  class="fill-width" list="color-encoding-list" id="system-color-encoding"></td></tr>
+                <tr><td class="td-title">Notes:</td><td class="td-value"><input  class="fill-width" type="text" id="system-notes"></td></tr>
+            </table>
+            <table class="fill-width">
+                <th colspan="2">Recording information</th>
+                <tr><td class="td-title">Equiptment:</td><td class="td-value"><input  class="fill-width" type="text" id="recording-equiptment"></td></tr>
+                <tr><td class="td-title">Source:</td><td class="td-value"><input  class="fill-width" list="recording-source-list" id="recording-source"></td></tr>
+                <tr><td class="td-title">Upscaled:</td><td class="td-value"><input  type="checkbox" id="recording-upscaled"></td></tr>
+                <tr><td class="td-title">Creator:</td><td class="td-value"><input  class="fill-width" type="text" id="recording-creator"></td></tr>
+                <tr><td class="td-title">Date:</td><td class="td-value"><input  class="fill-width" type="text" id="recording-date"></td></tr>
+                <tr><td class="td-title">Notes:</td><td class="td-value"><input  class="fill-width" type="text" id="recording-notes"></td></tr>
+            </table>
+        </div>
+        <div class="right">
+            <textarea id="json-doc"></textarea>
+            <button id="copy-button">Copy to clipboard</button>
+        </div>
+       </form>
+    </body>
+    <script type="text/javascript">
+        let updateJson = function () {
+            let outputField = document.getElementById("json-doc")
+            let jsonStruct = {
+                version: 1,
+                game: {
+                    title: document.getElementById('game-title').value,
+                    developer: document.getElementById('game-developer').value,
+                    publisher: document.getElementById('game-publisher').value,
+                    year: document.getElementById('game-year').value,
+                    region: document.getElementById('game-region').value,
+                    notes: document.getElementById('game-notes').value
+                },
+                system: {
+                    machine: document.getElementById('system-machine').value,
+                    model: document.getElementById('system-model').value,
+                    colorEncoding: document.getElementById('system-color-encoding').value,
+                    notes: document.getElementById('system-notes').value,
+                },
+                recording: {
+                    equiptment: document.getElementById('recording-equiptment').value,
+                    source: document.getElementById('recording-source').value,
+                    upscaled: document.getElementById('recording-upscaled').checked,
+                    creator: document.getElementById('recording-creator').value,
+                    date: document.getElementById('recording-date').value,
+                    notes: document.getElementById('recording-notes').value
+                }
+            }
+            outputField.textContent = JSON.stringify(jsonStruct, null, 2)
+        }
+
+        let inputElements = document.getElementsByTagName("input");
+        for (let i = 0; i < inputElements.length; i++) {
+            inputElements[i].oninput = () => {updateJson()}
+        }
+
+        document.getElementById('copy-button').onclick = () => {
+            let jsonDocElement = document.getElementById('json-doc')
+            jsonDocElement.select()
+            document.execCommand('copy')
+        }
+    </script>
+</html>

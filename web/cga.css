@@ -1,0 +1,32 @@
+.td-title {
+    width: 20%;
+}
+
+.td-value {
+    width: 80%;
+}
+
+.fill-width {
+    width: 100%;
+}
+
+th {
+    background-color: lightgray;
+}
+
+div.left {
+    position: relative;
+    float: left;
+    width: 55%;
+}
+
+div.right {
+    position: relative;
+    float: right;
+    width: 40%;
+}
+
+textarea {
+    width: 90%;
+    height: 400px;
+}
