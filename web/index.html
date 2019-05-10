@@ -15,11 +15,16 @@
             <option value="PAL">PAL</option>
             <option value="NTSC">NTSC</option>
         </datalist>
+        <datalist id="language-list">
+            <option value="English">English</option>
+            <option value="Japanese">Japanese</option>
+        </datalist>
         <datalist id="recording-source-list">
             <option value="RF">RF</option>
             <option value="Composite">Composite</option>
             <option value="RGBScart">RGB Scart</option>
             <option value="Component">Component</option>
+            <option value="S-Video">S-Video</option>
             <option value="HDMI">HDMI</option>
         </datalist>
         <datalist id="system-machine-list">
@@ -31,6 +36,7 @@
             <option value="C64">Commodore 64</option>
             <option value="A500">A500</option>
             <option value="A500">Amiga 500</option>
+            <option value="Nintendo 64">Nintendo 64</option>
         </datalist>
 
         <div class="left">
@@ -41,6 +47,7 @@
                 <tr><td class="td-title">Publisher:</td><td class="td-value"><input  class="fill-width" type="text" id="game-publisher"></td></tr>
                 <tr><td class="td-title">Year:</td><td class="td-value"><input  class="fill-width" type="text" id="game-year"></td></tr>
                 <tr><td class="td-title">Region:</td><td class="td-value"><input  class="fill-width" list="region-list" id="game-region"></td></tr>
+                <tr><td class="td-title">Language:</td><td class="td-value"><input  class="fill-width" list="language-list" id="game-language"></td></tr>
                 <tr><td class="td-title">Notes:</td><td class="td-value"><input  class="fill-width" type="text" id="game-notes"></td></tr>
             </table>
             <table class="fill-width">
@@ -52,7 +59,7 @@
             </table>
             <table class="fill-width">
                 <th colspan="2">Recording information</th>
-                <tr><td class="td-title">Equiptment:</td><td class="td-value"><input  class="fill-width" type="text" id="recording-equiptment"></td></tr>
+                <tr><td class="td-title">Equipment:</td><td class="td-value"><input  class="fill-width" type="text" id="recording-equipment"></td></tr>
                 <tr><td class="td-title">Source:</td><td class="td-value"><input  class="fill-width" list="recording-source-list" id="recording-source"></td></tr>
                 <tr><td class="td-title">Upscaled:</td><td class="td-value"><input  type="checkbox" id="recording-upscaled"></td></tr>
                 <tr><td class="td-title">Creator:</td><td class="td-value"><input  class="fill-width" type="text" id="recording-creator"></td></tr>
@@ -77,6 +84,7 @@
                     publisher: document.getElementById('game-publisher').value,
                     year: document.getElementById('game-year').value,
                     region: document.getElementById('game-region').value,
+                    language: document.getElementById('game-language').value,
                     notes: document.getElementById('game-notes').value
                 },
                 system: {
@@ -86,7 +94,7 @@
                     notes: document.getElementById('system-notes').value,
                 },
                 recording: {
-                    equiptment: document.getElementById('recording-equiptment').value,
+                    equipment: document.getElementById('recording-equipment').value,
                     source: document.getElementById('recording-source').value,
                     upscaled: document.getElementById('recording-upscaled').checked,
                     creator: document.getElementById('recording-creator').value,
