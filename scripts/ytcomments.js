@@ -14,6 +14,7 @@ fs.readFile(process.argv[2], {encoding: 'utf-8'}, (err, data) => {
         console.log('Machine: ' + obj.system.machine + ' (' + obj.system.colorEncoding + ')')
         console.log('Source: ' + obj.recording.source)
         console.log('Equipment: ' + obj.recording.equipment)
+        console.log('Captured by: ' + obj.recording.creator)
     }
     else {
         console.log('Error reading file:', err)
